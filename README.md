@@ -9,7 +9,7 @@ A bot to make codeforces duels in QQ groups
 
 目前本项目实现比较dirty，欢迎提出改进。
 
-### Deploy
+### Compiling
 
 本项目目前只包含一个文件，你需要使用CoolQ SDK工具链进行构建。以下介绍一种较为简单的构建方法。
 
@@ -45,7 +45,7 @@ include_directories(".../curl-7.68.0/builds/libcurl-vc-x86-release-static-ipv6-s
 
 并在代码开头手动添加宏并link动态链接库。
 
-#### Configure
+### Deploy
 
 由于懒，本项目的数据均直接使用`json`储存。你需要修改`demo.cpp`中的`path`变量为一个能够写入的空文件夹，并在该文件夹下放置`problemset.problems`文件。该文件需要从  [https://codeforces.com/api/problemset.problems](https://codeforces.com/api/problemset.problems?tags=implementation) 下载（文件体积较大）。
 
