@@ -623,9 +623,9 @@ CQ_INIT {
                                 msg += to_str(abs(t.second));
                             }
                             send_group_message(e.group_id, msg);
-                            duels.erase(t);
                             save_user(handles[to_lower(t->winner)]);
                             save_user(handles[to_lower(t->loser)]);
+                            duels.erase(t);
                             break;
                         }
                     }
