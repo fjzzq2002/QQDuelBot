@@ -47,7 +47,7 @@ include_directories(".../curl-7.68.0/builds/libcurl-vc-x86-release-static-ipv6-s
 
 ### Deploy
 
-由于懒，本项目的数据均直接使用`json`储存。你需要修改`demo.cpp`中的`path`变量为一个能够写入的空文件夹，并在该文件夹下放置`problemset.problems`文件。该文件需要从  [https://codeforces.com/api/problemset.problems](https://codeforces.com/api/problemset.problems?tags=implementation) 下载（文件体积较大）。
+由于懒，本项目的数据均直接使用`json`储存。你需要修改`demo.cpp`中的`path`变量为一个能够写入的空文件夹，并在该文件夹下放置`problemset.problems`文件。该文件需要从 https://codeforces.com/api/problemset.problems 下载（文件体积较大）。
 
 你还需要修改代码中的`admin_list`和`enabled_groups`变量，它们分别为管理员列表和开启的群号列表。
 
