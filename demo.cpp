@@ -1,4 +1,4 @@
-//edit here
+// edit here
 #define CURL_STATICLIB
 #pragma comment(lib, "E:/Windows Kits/10/Lib/10.0.18362.0/um/x86/ws2_32.lib")
 #pragma comment(lib, "E:/Windows Kits/10/Lib/10.0.18362.0/um/x86/crypt32.lib")
@@ -24,7 +24,7 @@ using MessageSegment = cq::message::MessageSegment;
 using cq::utils::base64_encode;
 using cq::utils::base64_decode;
 
-string path = "D:\\CFBot\\"; //edit here
+string path = "D:\\CFBot\\"; // edit here
 
 string to_lower(string s) {
     for (auto& c : s) c = tolower(c);
@@ -95,8 +95,9 @@ void save_user(ll w) {
     for (int j = 1; j <= 5; ++j) {
         std::ofstream o(path + to_str(w) + ".json");
         if (o << json(s)) {
-			o.close(); break;
-		}
+            o.close();
+            break;
+        }
         o.close();
     }
 }
@@ -250,7 +251,7 @@ string pe() {
         auto uu = std::mktime(&t) + 8 * 3600;
         std::tm* ptm = std::localtime(&uu);
         char buffer[32];
-        std::strftime(buffer, 32, "%Y/%d/%m %H:%M:%S", ptm);
+        std::strftime(buffer, 32, "%Y/%m/%d %H:%M:%S", ptm);
         w.insert(j + 2, " [UTC+8: " + string(buffer) + "]");
     }
     return w;
@@ -284,7 +285,7 @@ CQ_INIT {
     on_message([](const MessageEvent& e) {});
 
     on_group_message([](const GroupMessageEvent& e) {
-		//edit here
+        // edit here
         static const set<ll> admin_list = {1014768217};
         static const set<ll> enabled_groups = {1053740640, 617894285};
         if (!enabled_groups.count(e.group_id)) return;
@@ -664,7 +665,8 @@ CQ_INIT {
                         "------------------以下命令需要权限------------------\n"
                         ";refresh - 刷新题目列表（需要人工操作）\n"
                         ";forcebind - 强制绑定\n"
-                        ";forceunbind - 强制解绑";
+                        ";forceunbind - 强制解绑\n"
+						";forcesave - 强制保存";
                 send_group_message(e.group_id, help);
             } else if (is_admin) {
                 if (op == "refresh") {
@@ -690,6 +692,15 @@ CQ_INIT {
                         user_list.erase(q);
                         send_group_message(e.group_id, "已成功解绑 " + to_str(q) + " [" + hd + "]");
                         save_user(q);
+                    }
+                } else if (op == "forcesave") {
+                    ll q = to_qq(msg_vec.at(1));
+                    if (!user_list.count(q)) {
+                        send_group_message(e.group_id, "该用户不存在或未绑定Codeforces号");
+                    } else {
+                        string hd = user_list[q].handle;
+                        save_user(q);
+                        send_group_message(e.group_id, "已强制保存 " + to_str(q) + " [" + hd + "]");
                     }
                 }
             }
