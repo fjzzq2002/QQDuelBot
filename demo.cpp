@@ -567,7 +567,7 @@ CQ_INIT {
                             }
                             if (t1 < tu2) {
                                 t->time = t1 - t->time;
-                            } else if (t2 < tu1 || t1 == t2) {
+                            } else if (t2 < tu1 || (t1 == t2 && tu1==t1 && t2 == tu2)) {
                                 t->time = t2 - t->time;
                                 swap(t->winner, t->loser);
                             } else {
